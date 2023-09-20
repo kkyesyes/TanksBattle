@@ -21,7 +21,7 @@ public class MyPanel extends JPanel {
         super.paint(g);
         g.fillRect(0, 0, 1000, 750);
 
-        drawTank(hero.getX(), hero.getY(), g, 0, 0);
+        drawTank(hero.getX(), hero.getY(), g, 3, 0);
     }
 
     // 编写方法画出坦克
@@ -47,13 +47,35 @@ public class MyPanel extends JPanel {
         }
 
         // 根据坦克的方向来绘制坦克
+        // 0上1右2下3左
         switch (direction) {
-            case 0: // 表示向上
+            case 0: // 上
                 g.fill3DRect(x, y, 10, 60, false); // 画出坦克左边的轮子
                 g.fill3DRect(x + 30, y, 10, 60, false); // 画出坦克右边的轮子
                 g.fill3DRect(x + 10, y + 10, 20, 40, false); // 画出坦克盖子
                 g.fillOval(x + 10, y + 20, 20, 20); // 画出圆形盖子
                 g.drawLine(x + 20, y + 30, x + 20, y); // 画出炮筒
+                break;
+            case 1: // 右
+                g.fill3DRect(x, y, 60, 10, false); // 画出坦克上边的轮子
+                g.fill3DRect(x, y + 30, 60, 10, false); // 画出坦克下边的轮子
+                g.fill3DRect(x + 10, y + 10, 40, 20, false); // 画出坦克盖子
+                g.fillOval(x + 20, y + 10, 20, 20); // 画出圆形盖子
+                g.drawLine(x + 30, y + 20, x + 60, y + 20); // 画出炮筒
+                break;
+            case 2: // 下
+                g.fill3DRect(x, y, 10, 60, false); // 画出坦克左边的轮子
+                g.fill3DRect(x + 30, y, 10, 60, false); // 画出坦克右边的轮子
+                g.fill3DRect(x + 10, y + 10, 20, 40, false); // 画出坦克盖子
+                g.fillOval(x + 10, y + 20, 20, 20); // 画出圆形盖子
+                g.drawLine(x + 20, y + 30, x + 20, y + 60); // 画出炮筒
+                break;
+            case 3: // 左
+                g.fill3DRect(x, y, 60, 10, false); // 画出坦克上边的轮子
+                g.fill3DRect(x, y + 30, 60, 10, false); // 画出坦克下边的轮子
+                g.fill3DRect(x + 10, y + 10, 40, 20, false); // 画出坦克盖子
+                g.fillOval(x + 20, y + 10, 20, 20); // 画出圆形盖子
+                g.drawLine(x + 30, y + 20, x, y + 20); // 画出炮筒
                 break;
             default:
                 System.out.println("暂时没有处理");
