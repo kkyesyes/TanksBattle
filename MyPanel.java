@@ -2,13 +2,15 @@ package com.TankGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * @author KK
  * @version 1.0
  * 坦克大战的绘图区域
  */
-public class MyPanel extends JPanel {
+public class MyPanel extends JPanel implements KeyListener {
     // 定义我的坦克
     Hero hero = null;
 
@@ -21,7 +23,7 @@ public class MyPanel extends JPanel {
         super.paint(g);
         g.fillRect(0, 0, 1000, 750);
 
-        drawTank(hero.getX(), hero.getY(), g, 3, 0);
+        drawTank(hero.getX(), hero.getY(), g, hero.getDirection(), 0);
     }
 
     // 编写方法画出坦克
@@ -80,6 +82,40 @@ public class MyPanel extends JPanel {
             default:
                 System.out.println("暂时没有处理");
         }
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    // 处理wasd按键情况
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W:// 按下W键
+                hero.setDirection(0);
+                hero.moveUp();
+                break;
+            case KeyEvent.VK_A:
+                hero.setDirection(3);
+                hero.moveLift();
+                break;
+            case KeyEvent.VK_S:
+                hero.setDirection(2);
+                hero.moveDown();
+                break;
+            case KeyEvent.VK_D:
+                hero.setDirection(1);
+                hero.moveRight();
+                break;
+        }
+        this.repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }
