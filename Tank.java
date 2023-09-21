@@ -42,9 +42,10 @@ public class Tank {
         this.direction = direction;
     }
 
-    public Tank(int x, int y) {
+    public Tank(int x, int y, int direction) {
         this.x = x;
         this.y = y;
+        this.direction = direction;
     }
 
     public int getX() {
